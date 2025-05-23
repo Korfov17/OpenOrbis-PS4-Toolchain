@@ -1,6 +1,6 @@
 # OpenOrbis PS4 Toolchain
 
-[![Release State](https://img.shields.io/badge/release%20state-beta-yellow.svg)](https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain)
+[![Release Sftate](https://img.shields.io/badge/release%20state-beta-yellow.svg)](https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain)
 [![Release](https://img.shields.io/github/v/release/OpenOrbis/OpenOrbis-PS4-Toolchain)](https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain/releases/latest)
 [![Build OpenOrbis Toolchain](../../actions/workflows/toolchain.yml/badge.svg)](../../actions/workflows/toolchain.yml)
 [![Platforms](https://img.shields.io/badge/platform-linux%20%7C%20windows%20%7C%20macos-blue)](https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain/releases/latest)
