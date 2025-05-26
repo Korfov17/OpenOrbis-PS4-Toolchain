@@ -77,16 +77,34 @@ int main()
         DEBUGLOG << "Failed to get username!";
         return -1;
     }
-    
+
     std::stringstream userTextStream;
-    userTextStream << "Iniciado sesión como: " << username << " (ID: 0x" << std::hex << userID << ")";
+    userTextStream << "Logged into: " << username << " (ID: 0x" << std::hex << userID << ")";
     
     DEBUGLOG << "Entering draw loop...";
+
+    bool showUser = false;
 
     // Draw loop
     for (;;)
     {
-        scene->DrawText((char *)userTextStream.str().c_str(), fontTxt, 150, 150, bgColor, fgColor);
+        // Fondo negro
+        scene->DrawRect(0, 0, FRAME_WIDTH, FRAME_HEIGHT, bgColor);
+
+        if (!showUser)
+        {
+            // Primer mensaje tipo menú
+            scene->DrawText((char *)"Presiona Start para continuar...", fontTxt, 150, 150, bgColor, fgColor);
+
+            // Activamos después de X frames (simulación de botón)
+            if (frameID > 60)
+                showUser = true;
+        }
+        else
+        {
+            // Mostrar usuario logueado
+            scene->DrawText((char *)userTextStream.str().c_str(), fontTxt, 150, 150, bgColor, fgColor);
+        }
 
         // Submit the frame buffer
         scene->SubmitFlip(frameID);
