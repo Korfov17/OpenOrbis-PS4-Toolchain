@@ -2,7 +2,6 @@
 #include <iostream>
 #include <orbis/libkernel.h>
 #include <orbis/UserService.h>
-#include <orbis/Pad.h>
 
 #include "../../_common/graphics.h"
 #include "../../_common/log.h"
@@ -43,8 +42,6 @@ int main()
         for (;;);
     }
 
-    // Inicializa el pad
-    scePadInit();
 
     bool showUserInfo = false;
     char username[32] = {0};
