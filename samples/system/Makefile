@@ -1,5 +1,5 @@
 # Package metadata.
-TITLE       := OpenOrbis System Sample
+TITLE       := OpenOrbis Prueba
 VERSION     := 1.02
 TITLE_ID    := BREW00088
 CONTENT_ID  := IV0000-BREW00088_00-GETUSRIDEX000000
@@ -26,7 +26,7 @@ INTDIR      := $(PROJDIR)/x64/Debug
 CFILES      := $(wildcard $(PROJDIR)/*.c)
 CPPFILES    := $(wildcard $(PROJDIR)/*.cpp)
 COMMONFILES := $(wildcard $(COMMONDIR)/*.cpp)
-OBJS        := $(patsubst $(PROJDIR)/%.c, $(INTDIR)/%.o, $(CFILES)) $(patsubst $(PROJDIR)/%.cpp, $(INTDIR)/%.o, $(CPPFILES)) $(patsubst $(COMMONDIR)/%.cpp, $(INTDIR)/%.o, $(COMMONFILES))
+OBJS        := $(patsubst $(PROJDIR)/%.c, $(INTDIR)/%.o, $(CFILES)) $(patsubst $(PROJDIR)/%.c, $(INTDIR)/%.o, $(CPPFILES)) $(patsubst $(COMMONDIR)/%.c, $(INTDIR)/%.o, $(COMMONFILES))
 
 # Define final C/C++ flags
 CFLAGS      := --target=x86_64-pc-freebsd12-elf -fPIC -funwind-tables -c $(EXTRAFLAGS) -isysroot $(TOOLCHAIN) -isystem $(TOOLCHAIN)/include
