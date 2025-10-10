@@ -137,7 +137,7 @@ typedef struct OrbisKernelModuleSegmentInfo
     int32_t prot;
 } OrbisKernelModuleSegmentInfo;
 
-typedef struct OrbisKernelModuleInfo
+typedef struct OrbisKernelModuleInfo //352
 {
 	size_t size;
 	char name[256];
@@ -145,6 +145,41 @@ typedef struct OrbisKernelModuleInfo
 	uint32_t segmentCount;
 	uint8_t fingerprint[20];
 } OrbisKernelModuleInfo;
+
+typedef struct OrbisKernelModuleInfoEx { //424
+	size_t size;
+	char name[256];
+	int id;
+	uint32_t tls_index;
+	void* tls_init_addr;
+	uint32_t tls_init_size;
+	uint32_t tls_size;
+	uint32_t tls_offset;
+	uint32_t tls_align;
+	void* init_proc_addr;
+	void* fini_proc_addr;
+	uint64_t reserved1;
+	uint64_t reserved2;
+	void* eh_frame_hdr_addr;
+	void* eh_frame_addr;
+	uint32_t eh_frame_hdr_size;
+	uint32_t eh_frame_size;
+	OrbisKernelModuleSegmentInfo segmentInfo[4];
+	uint32_t segmentCount;
+	uint32_t ref_count;
+} OrbisKernelModuleInfoEx;
+
+typedef struct OrbisKernelModuleInfoForUnwind //304
+{
+	size_t size;
+	char name[256];
+	void* eh_frame_hdr_addr;
+	void* eh_frame_addr;
+	uint32_t eh_frame_size;
+	uint32_t;
+	void* seg0_addr;
+	uint64_t seg0_size;
+} OrbisKernelModuleInfoForUnwind;
 
 typedef struct _OrbisKernelEventFlagOptParam {
 	size_t sz;
@@ -173,8 +208,29 @@ typedef struct {
 	uint8_t     unk06[6];
 } OrbisKernelUuid;
 
-typedef mode_t OrbisKernelMode;
-typedef struct stat OrbisKernelStat;
+typedef uint16_t OrbisKernelMode;
+
+typedef struct OrbisKernelStat {   /* 120 */
+    dev_t           st_dev;        /* inode's device */
+    ino_t           st_ino;        /* inode's number */
+    OrbisKernelMode st_mode;       /* inode protection mode */
+    nlink_t         st_nlink;      /* number of hard links */
+    uid_t           st_uid;        /* user ID of the file's owner */
+    gid_t           st_gid;        /* group ID of the file's group */
+    dev_t           st_rdev;       /* device type */
+    struct timespec st_atim;       /* time of last access */
+    struct timespec st_mtim;       /* time of last data modification */
+    struct timespec st_ctim;       /* time of last file status change */
+    off_t           st_size;       /* file size, in bytes */
+    blkcnt_t        st_blocks;     /* blocks allocated for file */
+    blksize_t       st_blksize;    /* optimal blocksize for I/O */
+    uint32_t        st_flags;      /* user defined flags for file */
+    uint32_t        st_gen;        /* file generation number */
+    int32_t         st_lspare;
+    struct timespec st_birthtim;   /* time of file creation */
+    unsigned int :(8 / 2) * (16 - (int)sizeof(struct timespec));
+    unsigned int :(8 / 2) * (16 - (int)sizeof(struct timespec));
+} OrbisKernelStat;
 
 typedef struct timespec OrbisKernelTimespec;
 
@@ -184,11 +240,11 @@ typedef struct OrbisKernelIovec {
 } OrbisKernelIovec;
 
 typedef struct {
-	void* unk01;
-	void* unk02;
+	void* start_addr;
+	void* end_addr;
 	off_t offset;
-	int32_t unk04;
-	int32_t unk05;
+	int32_t prot;
+	int32_t mtype;
 	unsigned isFlexibleMemory : 1;
 	unsigned isDirectMemory : 1;
 	unsigned isStack : 1;
@@ -255,10 +311,26 @@ typedef struct
 
 typedef struct
 {
-	int32_t AppId;
-	int32_t Unk;
-	char unk0x8[0x4];
-	int32_t AppType;
-	char TitleId[10];
-	char unk0x1A[0x2E];
+	int32_t version;
+	int32_t;
+	uint64_t ids_bits[2];
+} OrbisTitleWorkaround;
+
+typedef struct
+{
+	int32_t  AppId;
+	int32_t  mmap_flags;
+	int32_t  attributeExe;
+	int32_t  AppType;
+	char     TitleId[10];
+	uint8_t  debug_level;
+	uint8_t  slv_flags;
+	uint8_t  miniAppDmemFlags;
+	uint8_t  render_mode;
+	uint8_t  mdbg_out;
+	uint8_t  requiredHdcpType;
+	uint64_t preloadPrxFlags;
+	int32_t  attribute;
+	int32_t  hasParamSfo;
+	OrbisTitleWorkaround TitleWorkaround;
 } OrbisAppInfo;
