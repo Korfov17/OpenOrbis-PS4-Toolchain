@@ -1,8 +1,8 @@
 # Package metadata.
-TITLE       := OpenOrbis System Sample
-VERSION     := 1.02
-TITLE_ID    := BREW00088
-CONTENT_ID  := IV0000-BREW00088_00-GETUSRIDEX000000
+TITLE       := OpenOrbis Prueba Auto
+VERSION     := 1.01
+TITLE_ID    := PRIV00088
+CONTENT_ID  := IV0000-PRIV00088_00-GETUSRIDEX000000
 
 # Libraries linked into the ELF.
 LIBS        := -lc -lkernel -lc++ -lSceVideoOut -lSceSysmodule -lSceFreeType -lSceUserService
