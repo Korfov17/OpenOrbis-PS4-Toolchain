@@ -13,7 +13,6 @@
 
 // Font information
 #define FONT_SIZE   	   42
-#define TEST1              Prueba1
 
 // Logging
 std::stringstream debugLogStream;
@@ -81,7 +80,7 @@ int main()
     
     std::stringstream userTextStream;
     userTextStream << "Has iniciado sesion siendo: " << username << " (ID: 0x" << std::hex << userID << ")";
-    userTextStream << "Mensaje Auto "TEST1")";
+    userTextStream << "Mensaje Auto";
     
     DEBUGLOG << "Entering draw loop...";
 
